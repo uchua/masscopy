@@ -1,29 +1,27 @@
 ﻿<Window x:Class="MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="MassCopy" Height="450" Width="800" ResizeMode="CanMinimize">
+    Title="MassCopy" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="212*"/>
-            <ColumnDefinition Width="185*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <GroupBox Header="Copy From" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="401" Width="380">
-            <ListView HorizontalAlignment="Left" Height="300" Margin="10,10,-2,0" VerticalAlignment="Top" Width="360">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+        <GroupBox Grid.Column="0" Header="Copy From">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="9*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+            </Grid>
         </GroupBox>
-        <GroupBox Header="Copy To" HorizontalAlignment="Left" Margin="403,10,0,0" VerticalAlignment="Top" Height="401" Width="380" Grid.ColumnSpan="2">
-            <ListView HorizontalAlignment="Left" Height="300" Margin="10,10,-2,0" VerticalAlignment="Top" Width="360">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+        <GroupBox Grid.Column="1" Header="Copy To">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="9*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+            </Grid>
         </GroupBox>
     </Grid>
 </Window>
