@@ -52,6 +52,10 @@ Class MainWindow
     End Sub
 
     Private Sub BeginCopy_Click(sender As Object, e As RoutedEventArgs) Handles BeginCopy.Click
-        Dim threads = New List(Of System.Threading.Thread)
+        Dim threads = New List(Of CopierThread)
+
+        For Each P As String In CopyToList.Items
+            threads.Add(New CopierThread(P, CopyFromList.Items))
+        Next
     End Sub
 End Class
