@@ -1,6 +1,7 @@
 ﻿Imports System.Windows.Forms
 
 Class MainWindow
+
     ' Subs
     Private Sub ListBox_SelectionChanged(sender As Object, e As SelectionChangedEventArgs)
 
@@ -11,23 +12,45 @@ Class MainWindow
     End Sub
 
     Private Sub CopyFromAddFile_Click(sender As Object, e As RoutedEventArgs) Handles CopyFromAddFile.Click
-        Dim ofd As New OpenFileDialog
-        ofd.Multiselect = True
+        If System.IO.File.Exists(CopyFromTextBox.Text) Then
+            If Not CopyFromList.Items.Contains(CopyFromTextBox.Text) Then
+                CopyFromList.Items.Add(CopyFromTextBox.Text)
+            End If
+        ElseIf System.IO.Directory.Exists(CopyFromTextBox.Text) Then
+            If Not CopyFromList.Items.Contains(CopyFromTextBox.Text) Then
+                CopyFromList.Items.Add(CopyFromTextBox.Text)
+            End If
+        Else
+            Dim ofd As New OpenFileDialog
+            ofd.Multiselect = True
 
-        If ofd.ShowDialog() = Windows.Forms.DialogResult.OK Then
-            For Each F In ofd.FileNames
-                If Not CopyFromList.Items.Contains(F) Then
-                    CopyFromList.Items.Add(F)
-                End If
-            Next
+            If ofd.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                For Each F In ofd.FileNames
+                    If Not CopyFromList.Items.Contains(F) Then
+                        CopyFromList.Items.Add(F)
+                    End If
+                Next
+            End If
         End If
     End Sub
 
     Private Sub CopyFromAddFolder_Click(sender As Object, e As RoutedEventArgs) Handles CopyFromAddFolder.Click
-        Dim fbd As New FolderBrowserDialog
+        If System.IO.File.Exists(CopyFromTextBox.Text) Then
+            If Not CopyFromList.Items.Contains(CopyFromTextBox.Text) Then
+                CopyFromList.Items.Add(CopyFromTextBox.Text)
+            End If
+        ElseIf System.IO.Directory.Exists(CopyFromTextBox.Text) Then
+            If Not CopyFromList.Items.Contains(CopyFromTextBox.Text) Then
+                CopyFromList.Items.Add(CopyFromTextBox.Text)
+            End If
+        Else
+            Dim fbd As New FolderBrowserDialog
 
-        If fbd.ShowDialog() = Windows.Forms.DialogResult.OK Then
-            CopyFromList.Items.Add(fbd.SelectedPath)
+            If fbd.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                If Not CopyFromList.Items.Contains(fbd.SelectedPath) Then
+                    CopyFromList.Items.Add(fbd.SelectedPath)
+                End If
+            End If
         End If
     End Sub
 
@@ -38,10 +61,22 @@ Class MainWindow
     End Sub
 
     Private Sub CopyToAdd_Click(sender As Object, e As RoutedEventArgs) Handles CopyToAdd.Click
-        Dim fbd As New FolderBrowserDialog
+        If System.IO.File.Exists(CopyToTextBox.Text) Then
+            If Not CopyToList.Items.Contains(CopyToTextBox.Text) Then
+                CopyToList.Items.Add(CopyToTextBox.Text)
+            End If
+        ElseIf System.IO.Directory.Exists(CopyToTextBox.Text) Then
+            If Not CopyToList.Items.Contains(CopyToTextBox.Text) Then
+                CopyToList.Items.Add(CopyToTextBox.Text)
+            End If
+        Else
+            Dim fbd As New FolderBrowserDialog
 
-        If fbd.ShowDialog() = Windows.Forms.DialogResult.OK Then
-            CopyToList.Items.Add(fbd.SelectedPath)
+            If fbd.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                If Not CopyToList.Items.Contains(fbd.SelectedPath) Then
+                    CopyToList.Items.Add(fbd.SelectedPath)
+                End If
+            End If
         End If
     End Sub
 
@@ -54,8 +89,16 @@ Class MainWindow
     Private Sub BeginCopy_Click(sender As Object, e As RoutedEventArgs) Handles BeginCopy.Click
         Dim threads = New List(Of CopierThread)
 
-        For Each P As String In CopyToList.Items
-            threads.Add(New CopierThread(P, CopyFromList.Items))
+        For Each Destination As String In CopyToList.Items
+            threads.Add(New CopierThread(Destination, CopyFromList.Items))
+        Next
+
+        For Each CT As CopierThread In threads
+            CT.Thread.Start()
+        Next
+
+        For Each CT As CopierThread In threads
+            CT.Thread.Join()
         Next
     End Sub
 End Class

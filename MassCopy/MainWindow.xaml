@@ -14,27 +14,38 @@
         <GroupBox Grid.Row="0" Grid.Column="0" Header="Copy From" Margin="5,5,5,5">
             <Grid x:Name="CopyFromGrid" Margin="5,5,5,5">
                 <Grid.RowDefinitions>
-                    <RowDefinition x:Name="CopyFromListCell" Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="28"/>
                     <RowDefinition Height="28"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <ListBox x:Name="CopyFromList" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Height="{Binding ActualHeight, ElementName=CopyFromListCell, Mode=OneWay}" Width="{Binding ActualWidth, ElementName=CopyFromGrid, Mode=OneWay}" SelectionChanged="ListBox_SelectionChanged" SelectionMode="Multiple" />
-                <Button x:Name="CopyFromAddFile" Content="Add File" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="Auto" FontWeight="Bold"/>
-                <Button x:Name="CopyFromAddFolder" Content="Add Folder" HorizontalAlignment="Left" Margin="65,3.667,0,4.333" Grid.Row="1" VerticalAlignment="Center" Width="Auto" FontWeight="Bold" RenderTransformOrigin="1.263,0.533"/>
-                <Button x:Name="CopyFromSub" Content="-" HorizontalAlignment="Left" Margin="135,3.667,0,4.333" Grid.Row="1" VerticalAlignment="Center" Width="20" FontWeight="Bold" RenderTransformOrigin="2.425,0.708"/>
+                <Grid x:Name="CopyFromCell">
+                    <ListBox x:Name="CopyFromList" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Height="{Binding ActualHeight, ElementName=CopyFromCell, Mode=OneWay}" Width="{Binding ActualWidth, ElementName=CopyFromCell, Mode=OneWay}" SelectionChanged="ListBox_SelectionChanged" SelectionMode="Multiple" AllowDrop="False"/>
+                </Grid>
+                <TextBox x:Name="CopyFromTextBox" HorizontalAlignment="Left" Height="23" Margin="0,3,0,0" Grid.Row="1" Grid.RowSpan="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="{Binding ActualWidth, ElementName=CopyFromGrid, Mode=OneWay}" Text="Source Path"/>
+                <Button x:Name="CopyFromAddFile" Content="Add File" HorizontalAlignment="Left" Margin="0,3.667,0,4.333" Grid.Row="2" VerticalAlignment="Center" Width="Auto" FontWeight="Bold"/>
+                <Button x:Name="CopyFromAddFolder" Content="Add Folder" HorizontalAlignment="Left" Margin="55,3.667,0,4.333" Grid.Row="2" VerticalAlignment="Center" Width="Auto" FontWeight="Bold" RenderTransformOrigin="1.263,0.533"/>
+                <Button x:Name="CopyFromSub" Content="-" HorizontalAlignment="Left" Margin="127,3.667,0,4.333" Grid.Row="2" VerticalAlignment="Center" Width="20" FontWeight="Bold" RenderTransformOrigin="2.425,0.708"/>
             </Grid>
         </GroupBox>
         <GroupBox Grid.Row="0" Grid.Column="1" Header="Copy To" Margin="5,5,5,5">
             <Grid x:Name="CopyToGrid" Margin="5,5,5,5">
                 <Grid.RowDefinitions>
-                    <RowDefinition x:Name="CopyToListCell" Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="28"/>
                     <RowDefinition Height="28"/>
                 </Grid.RowDefinitions>
-                <ListBox x:Name="CopyToList" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="{Binding ActualHeight, ElementName=CopyToListCell, Mode=OneWay}" Width="{Binding ActualWidth, ElementName=CopyToGrid, Mode=OneWay}" SelectionChanged="ListBox_SelectionChanged_1" SelectionMode="Multiple"/>
-                <Button x:Name="CopyToAdd" Content="+" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="20" FontWeight="Bold"/>
-                <Button x:Name="CopyToSub" Content="-" HorizontalAlignment="Left" Margin="40,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="20" FontWeight="Bold"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid x:Name="CopyToCell">
+                    <ListBox x:Name="CopyToList" HorizontalAlignment="Left" VerticalAlignment="Top" Height="{Binding ActualHeight, ElementName=CopyToCell, Mode=OneWay}" Width="{Binding ActualWidth, ElementName=CopyToCell, Mode=OneWay}" SelectionChanged="ListBox_SelectionChanged_1" SelectionMode="Multiple" AllowDrop="False"/>
+                </Grid>
+                <TextBox x:Name="CopyToTextBox" HorizontalAlignment="Left" Height="23" Margin="0,3,0,0" Grid.Row="1" Grid.RowSpan="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="{Binding ActualWidth, ElementName=CopyToGrid, Mode=OneWay}" Text="Destination Path"/>
+                <Button x:Name="CopyToAdd" Content="+" HorizontalAlignment="Left" Margin="0,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="20" FontWeight="Bold"/>
+                <Button x:Name="CopyToSub" Content="-" HorizontalAlignment="Left" Margin="25,3.667,0,4.333" Grid.Row="2" VerticalAlignment="Center" Width="20" FontWeight="Bold"/>
             </Grid>
         </GroupBox>
         <Button x:Name="BeginCopy" Content="Copy" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="1" Grid.Column="0" Width="45"/>
