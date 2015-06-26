@@ -90,7 +90,7 @@ Class MainWindow
         Dim threads = New List(Of CopierThread)
 
         For Each Destination As String In CopyToList.Items
-            threads.Add(New CopierThread(Destination, CopyFromList.Items))
+            threads.Add(New CopierThread(Destination, CopyFromList.Items, Overwrite.IsChecked))
         Next
 
         For Each CT As CopierThread In threads

@@ -28,6 +28,7 @@
                 <Button x:Name="CopyFromAddFile" Content="Add File" HorizontalAlignment="Left" Margin="0,3.667,0,4.333" Grid.Row="2" VerticalAlignment="Center" Width="Auto" FontWeight="Bold"/>
                 <Button x:Name="CopyFromAddFolder" Content="Add Folder" HorizontalAlignment="Left" Margin="55,3.667,0,4.333" Grid.Row="2" VerticalAlignment="Center" Width="Auto" FontWeight="Bold" RenderTransformOrigin="1.263,0.533"/>
                 <Button x:Name="CopyFromSub" Content="-" HorizontalAlignment="Left" Margin="127,3.667,0,4.333" Grid.Row="2" VerticalAlignment="Center" Width="20" FontWeight="Bold" RenderTransformOrigin="2.425,0.708"/>
+                <CheckBox x:Name="Overwrite" Content="Overwrite" Grid.Row="2" HorizontalAlignment="Left" Margin="152,6.667,0,0" VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>
         <GroupBox Grid.Row="0" Grid.Column="1" Header="Copy To" Margin="5,5,5,5">
