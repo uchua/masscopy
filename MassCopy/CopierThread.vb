@@ -2,11 +2,19 @@
 Imports System.IO
 
 Public Class CopierThread
+    ' Variables
     Private destination As String
     Private items As System.Windows.Controls.ItemCollection
     Private overwrite As Boolean
     Public Thread As Thread
 
+    ' Functions
+    Public Function GetDirNameFromPath(FilePath As String) As String
+        Dim split As String() = FilePath.Split("\")
+        Return split(split.Length - 1)
+    End Function
+
+    ' Subs
     Public Sub New(DestinationFolder As String, CopiedItems As System.Windows.Controls.ItemCollection)
         Me.destination = DestinationFolder
         Me.items = CopiedItems
